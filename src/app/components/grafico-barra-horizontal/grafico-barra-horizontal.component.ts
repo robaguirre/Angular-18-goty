@@ -39,25 +39,25 @@ export class GraficoBarraHorizontalComponent implements OnInit, OnDestroy {
 
   colorScheme = 'nightLights';
 
-  intervalo;
+  // intervalo;
 
   constructor() {
 
-    // Esto provoca fuga de memoria
-    this.intervalo = setInterval(() => {
-      // console.log('si ejecuta esto');
+    // // Esto provoca fuga de memoria
+    // this.intervalo = setInterval(() => {
+    //   // console.log('si ejecuta esto');
 
-      const newResults = [...this.results];
+    //   const newResults = [...this.results];
 
-      for (const i in newResults) {
-        if (i) {
-          newResults[i].value = Math.round(Math.random() * 500);
-        }
-      }
+    //   for (const i in newResults) {
+    //     if (i) {
+    //       newResults[i].value = Math.round(Math.random() * 500);
+    //     }
+    //   }
 
-      this.results = [...newResults];
+    //   this.results = [...newResults];
 
-    }, 1500);
+    // }, 1500);
 
   }
 
@@ -65,7 +65,7 @@ export class GraficoBarraHorizontalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    clearInterval(this.intervalo);
+    // clearInterval(this.intervalo);
   }
 
 
