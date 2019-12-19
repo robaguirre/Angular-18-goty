@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Game } from '../interfaces/interfaces';
+import { of } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 
 
 
@@ -10,9 +12,29 @@ import { Game } from '../interfaces/interfaces';
 })
 export class GameService {
 
+  private juegos: Game[] = [];
+
   constructor(private http: HttpClient) { }
 
   getNominados() {
-    return this.http.get<Game[]>(`${environment.url}/api/goty`);
+    if (this.juegos.length > 0) {
+      // No tenemos juegos, pero hay que devolver un observable
+      return of(this.juegos);
+    } else {
+      return this.http.get<Game[]>(`${environment.url}/api/goty`)
+        .pipe(
+          tap(juegos => this.juegos = juegos)
+        );
+    }
+  }
+
+  votarJuegos(id: string) {
+    return this.http.post(`${environment.url}/api/goty/${id}`, {})
+      .pipe(
+        catchError(err => {
+          // console.log(err);
+          return of(err.error);
+        })
+      );
   }
 }

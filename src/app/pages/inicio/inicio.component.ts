@@ -11,14 +11,17 @@ import { Game } from '../../interfaces/interfaces';
 })
 export class InicioComponent implements OnInit {
 
+  juegos: { name: string, value: number }[] = [];
+
   constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
 
     this.db.collection('goty').valueChanges()
       .pipe(map((resp: Game[]) => resp.map(({ name, votos }) => ({ name, value: votos })))
-      ).subscribe(resp => {
-        console.log(resp);
+      ).subscribe(juegos => {
+        // console.log(juegos);
+        this.juegos = juegos;
       });
 
   }

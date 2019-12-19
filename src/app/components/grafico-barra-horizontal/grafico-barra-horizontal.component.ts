@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 
 @Component({
   selector: 'app-grafico-barra-horizontal',
@@ -7,25 +7,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class GraficoBarraHorizontalComponent implements OnInit, OnDestroy {
 
-
-  results: any[] = [
-    {
-      name: 'Juego 1',
-      value: 20
-    },
-    {
-      name: 'Juego 2',
-      value: 30
-    },
-    {
-      name: 'Juego 3',
-      value: 56
-    },
-    {
-      name: 'Juego 4',
-      value: 27
-    }
-  ];
+  @Input() results: any[] = [];
 
   // options
   showXAxis = true;
@@ -70,14 +52,14 @@ export class GraficoBarraHorizontalComponent implements OnInit, OnDestroy {
 
 
   onSelect(data): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+    // console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
 
   onActivate(data): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
+    // console.log('Activate', JSON.parse(JSON.stringify(data)));
   }
 
   onDeactivate(data): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+    // console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 }
